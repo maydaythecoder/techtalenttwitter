@@ -7,7 +7,16 @@
 </head>
 <body>
     <div class="container">
-        <div th:replace="fragments/navbar"></div>    
+        <div th:replace="fragments/navbar"></div> 
+        <ul class="nav nav-tabs">
+            <li role="presentation" th:classappend="${filter == 'all' ? 'active' : '' }">
+                <a href="/users">All</a></li>
+            <li role="presentation" th:classappend="${filter == 'followers' ? 'active' : '' }">
+                <a href="/users?filter=followers">Followers</a></li>
+            <li role="presentation" th:classappend="${filter == 'following' ? 'active' : '' }">
+                <a href="/users?filter=following">Following</a></li>
+        </ul><br/>                   
+
         <h2>Users</h2>
         <div class="list-group" th:each="user:${users}">
         <a th:href="@{/users/} + ${user.username}" class="list-group-item list-group-item-action">
