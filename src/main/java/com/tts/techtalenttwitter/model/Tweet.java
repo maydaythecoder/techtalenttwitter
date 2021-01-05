@@ -1,7 +1,9 @@
 package com.tts.techtalenttwitter.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
@@ -39,11 +43,11 @@ public class Tweet
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    // @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    // @JoinTable(name = "tweet_tag", 
-    //            joinColumns = @JoinColumn(name="tweet_id"),
-    //            inverseJoinColumns = @JoinColumn(name="tag_id"))
-    // private List<Tag> tags;  
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "tweet_tag", 
+               joinColumns = @JoinColumn(name="tweet_id"),
+               inverseJoinColumns = @JoinColumn(name="tag_id"))
+    private List<Tag> tags;  
     
 	@NotEmpty(message = "Tweet cannot be empty")
 	@Length(max = 280, message = "Tweet cannot have more than 280 characters")

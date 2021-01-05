@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>User Profile</title>
+    <th:block th:replace="/fragments/headlinks :: head-styles"></th:block>     
+</head>
+<body>
+    <div class="container">
+        <div th:replace="fragments/navbar"></div>    
+        <h2>Profile for <span th:text="${user.firstName}"></span>
+        <span th:text="${user.lastName}"></span> - <span style="color: #00aced">
+        @<span th:text="${user.username}"></span></span></h2>
+        </span>
+        <h5>Joined <span th:text="${#dates.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
+        <div th:if="${!isSelfPage}">
+            <form th:action="@{/follow/} + ${user.username}" th:if="${!following}" method="post">
+                <button style="float:right" type="Submit" class="btn btn-lg btn-success">Follow</button>
+            </form>
+            <form th:action="@{/unfollow/} + ${user.username}" th:if="${following}" method="post">
+                <button style="float:right" type="Submit" class="btn btn-lg btn-primary unfollow_btn">Following</button>
+            </form>
+        </div>
+        
+        <div th:if="${not #lists.isEmpty(tweetList)}">
+            <h3>Tweets</h3>    
+        </div>
+        <div th:if="${#lists.isEmpty(tweetList)}">
+            <h3>No Recent Tweets</h3>    
+        </div>        
+        <div class="list-group" th:each="tweet:${tweetList}">
+            <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5>@<span th:text="${tweet.user.username}"></span>
+                    <small th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></small></h5>                    
+                </div>
+                <p class="mb-1" th:utext="${tweet.message}"></p>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>

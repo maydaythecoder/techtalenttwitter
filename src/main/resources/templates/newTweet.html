@@ -2,16 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-    <title>Log in</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link rel="stylesheet" href="/custom.css">    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/custom.js"></script>
+    <title>New Tweet</title>
+    <th:block th:replace="/fragments/headlinks :: head-styles"></th:block>     
 </head>
 <body>
     <div class="container">
+        <div th:replace="fragments/navbar"></div>
         <div class="jumbotron col-md-8 col-md-offset-2">
             <h2>New Tweet</h2><br/>
             <form th:action="@{/tweets}" th:object="${tweet}" method="post" autocomplete="off">
