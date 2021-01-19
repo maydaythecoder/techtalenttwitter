@@ -20,7 +20,8 @@ public class FollowController
 
     @PostMapping(value = "/follow/{username}")
     public String follow(@PathVariable(value="username") String username,
-                         HttpServletRequest request)
+                         HttpServletRequest request,
+                         String value)
     {
         User loggedInUser = userService.getLoggedInUser();
         User userToFollow = userService.findByUsername(username);

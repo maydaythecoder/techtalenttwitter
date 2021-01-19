@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>Example</title>
+    <th:block th:replace="/fragments/headlinks :: head-styles"></th:block>     
+</head>
+<body>
+    <div th:text="${option}"></div>
+    <form th:action="@{/example1}" method="get">
+        <input type="text" th:value="${valuex}" />
+        <input type="submit"/>
+    </form>
+</body>
+</html>

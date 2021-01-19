@@ -16,7 +16,10 @@
                 <h4 style="color: red">Login unsuccessful.</h4>
             </div>
             <button class="btn btn-md btn-success btn-block" name="Submit" value="Login" type="Submit">Log in</button> 
-        </form>      
+        </form> 
+        <form th:action="@{/signup}" method="get">
+            <button class="btn btn-md btn-success" name="submit" value="signup" type="submit">Sign-up</button>
+        </form>
     </div>    
 </body>
 </html>

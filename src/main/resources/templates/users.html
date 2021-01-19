@@ -39,7 +39,9 @@
                 </div>
             </div>
         </a>    
-        </div>        
+        </div>  
+        <div th:if="${#lists.isEmpty(users) and filter == 'followers'}"><center><h3>You don't have any followers</h3></center></div>
+        <div th:if="${#lists.isEmpty(users) and filter == 'following'}"><center><h3>You're not following anyone</h3></center></div>        
     </div>
 </body>
 </html>
